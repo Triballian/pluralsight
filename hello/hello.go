@@ -9,14 +9,16 @@ type Salutation struct {
 
 type Printer func(string)
 
-func Greet(salutation Salutation, do Printer) {
-	message, alternate := CreateMessage(salutation.name, salutation.greeting, "yo")
-	do(message)
+func Greet(salutation Salutation, do Printer, isFormal bool) {
+	message, alternate := CreateMessage(salutation.name, salutation.greeting)
+	if isFormal {
+		do(message)
+	}
 	do(alternate)
 }
 
-func CreateMessage(name string, greeting ...string) (message string, alternate string) {
-	message = greeting[1] + " " + name
+func CreateMessage(name, greeting string) (message string, alternate string) {
+	message = greeting + " " + name
 	alternate = "hey!" + name
 	return
 }
@@ -41,5 +43,5 @@ func main() {
 	var s = Salutation{}
 	s.name = "Bob"
 	s.greeting = "Hello"
-	Greet(s, CreatePrintFunction("!!!"))
+	Greet(s, CreatePrintFunction("!!!"), false)
 }
