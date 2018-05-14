@@ -6,5 +6,5 @@ func main() {
 	var s = greeting.Salutation{}
 	s.Name = "Bob"
 	s.Greeting = "Hello"
-	greeting.Greet(s, greeting.CreatePrintFunction("!!!"), true, 5)
+	greeting.Greet(s, greeting.CreatePrintFunction("!!!"), true, 3)
 }
