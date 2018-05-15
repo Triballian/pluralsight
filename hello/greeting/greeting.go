@@ -7,9 +7,11 @@ type Salutation struct {
 	Greeting string
 }
 
+type Salutations []Salutation
+
 type Printer func(string)
 
-func Greet(salutation []Salutation, do Printer, isFormal bool, times int) {
+func Greet(salutation Salutations, do Printer, isFormal bool, times int) {
 	for _, s := range salutation {
 		message, alternate := CreateMessage(s.Name, s.Greeting)
 		if prefix := GetPrefix(s.Name); isFormal {
