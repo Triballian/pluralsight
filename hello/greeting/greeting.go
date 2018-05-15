@@ -29,9 +29,15 @@ func GetPrefix(name string) (prefix string) {
 		"Amy":  "Dr ",
 		"Mary": "Mrs ",
 	}
+	prefixMap["Joe"] = "Jr "
 
-	return prefixMap[name]
-	return
+	delete(prefixMap, "Mary")
+
+	if value, exists := prefixMap[name]; exists {
+		return value
+	}
+
+	return "Dude "
 }
 
 func TypeSwitchTest(x interface{}) {
