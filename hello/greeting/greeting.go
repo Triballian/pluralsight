@@ -11,8 +11,8 @@ type Salutations []Salutation
 
 type Printer func(string)
 
-func Greet(salutation Salutations, do Printer, isFormal bool, times int) {
-	for _, s := range salutation {
+func (salutations Salutations) Greet(do Printer, isFormal bool, times int) {
+	for _, s := range salutations {
 		message, alternate := CreateMessage(s.Name, s.Greeting)
 		if prefix := GetPrefix(s.Name); isFormal {
 			do(prefix + message)
