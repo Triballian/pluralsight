@@ -7,6 +7,10 @@ type Salutation struct {
 	Greeting string
 }
 
+func (salutation *Salutation) Rename(newName string) {
+	salutation.Name = newName
+}
+
 type Salutations []Salutation
 
 type Printer func(string)
