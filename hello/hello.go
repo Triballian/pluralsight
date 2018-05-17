@@ -18,10 +18,12 @@ func main() {
 		{"Mary", "What is up?"},
 	}
 	fmt.Fprintf(&salutations[0], "The count is %d", 10)
-	done := make(chan bool)
+	done := make(chan bool, 2)
 	go func() {
 		salutations.Greet(greeting.CreatePrintFunction("<C>"), true, 6)
 		done <- true
+		done <- true
+		fmt.Println("Done!")
 	}()
 
 	salutations.Greet(greeting.CreatePrintFunction("?"), true, 6)
