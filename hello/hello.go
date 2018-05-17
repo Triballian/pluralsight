@@ -1,6 +1,16 @@
 package main
 
-import "./greeting"
+import (
+	"fmt"
+
+	"time"
+
+	"github.com/Triballian/pluralsight/hello/greeting"
+)
+
+func RenameToFrog(r greeting.Renameable) {
+	r.Rename("Frog")
+}
 
 func main() {
 
@@ -9,7 +19,9 @@ func main() {
 		{"Joe", "Hi"},
 		{"Mary", "What is up?"},
 	}
-	salutations[0].Rename("John")
+	fmt.Fprintf(&salutations[0], "The count is %d", 10)
+	go salutations.Greet(greeting.CreatePrintFunction("<C>"), true, 6)
 	salutations.Greet(greeting.CreatePrintFunction("?"), true, 6)
 	// greeting.Greet(slice, greeting.CreatePrintFunction("?"), true, 6)
+	time.Sleep(100 * time.Millisecond)
 }
