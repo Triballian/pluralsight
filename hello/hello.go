@@ -3,8 +3,6 @@ package main
 import (
 	"fmt"
 
-	"time"
-
 	"github.com/Triballian/pluralsight/hello/greeting"
 )
 
@@ -20,8 +18,13 @@ func main() {
 		{"Mary", "What is up?"},
 	}
 	fmt.Fprintf(&salutations[0], "The count is %d", 10)
-	go salutations.Greet(greeting.CreatePrintFunction("<C>"), true, 6)
+	done := make(chan bool)
+	go func() {
+		salutations.Greet(greeting.CreatePrintFunction("<C>"), true, 6)
+		done <- true
+	}()
+
 	salutations.Greet(greeting.CreatePrintFunction("?"), true, 6)
+	<-done //going to blok until it relceieve the varibale from the channle
 	// greeting.Greet(slice, greeting.CreatePrintFunction("?"), true, 6)
-	time.Sleep(100 * time.Millisecond)
 }
