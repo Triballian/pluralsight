@@ -1,6 +1,0 @@
-package main
-func opSplit(s side)(isop bool, op string, lterm string, rterm string){
-    var isop bool
-    var op, leterm, rterm string
-
-}
