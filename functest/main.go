@@ -1,52 +1,63 @@
 package main
 
-import (
-	"bufio"
-	"fmt"
-	"log"
-	"os"
-	"strings"
-)
+import "fmt"
 
+type ex struct {
+	equation eq
+	operator []op
+}
 type eq struct {
-	equation string
-	noterms  int
-	terms    []*term
+	expression string
+	delimeter  string
+	leftSide   string
+	rightSide  string
+	opLeft     string
+	opRight    string
+	terms      []*term
+	operators  []*op
 
 	// coefficient terms or constant terms
 
 }
 
-type term struct {
-	lside      bool
-	operator   string // left side, right side of operator or there is no operator adjecent to this term.
-	coeficient int    // every term has a coeffecient even if the coefficient is 1
-	yvar       rune   // x, y, or nil
-
-	exponent int // even if the exponent is zero
+type expression interface {
+	split(delimeter string)
 }
 
-func prmptforInput() string {
+type lop struct {
+}
+type rop struct {
+}
 
-	reader := bufio.NewReader(os.Stdin)
-	fmt.Println("\nType the equation to be identified as either a function or not a function")
-	fmt.Print("\n>>")
-
-	text, err := reader.ReadString('\n')
-	if err != nil {
-		log.Fatal(err)
-	}
-	return text
+type op struct {
+	delimeter string
+	lterm     string
+	rterm     string
+	operator  string
+	lside     bool
+}
+type term struct {
+	lside      bool
+	operator   string   // left side, right side of operator or there is no operator adjecent to this term.
+	coeficient []string // every term has a coeffecient even if the coefficient is 1
+	variable   rune     // x, y, or nil
+	constant   int
+	exponent   int // even if the exponent is zero
 }
 
 func main() {
 	var e eq
-	var pe = &e
-	pe.equation = prmptforInput()
-	fmt.Printf("equation : %s", pe.equation)
-	seq := strings.Split(pe.equation, `=`)
-	proceq(pe)
+	var o op
 
-	fmt.Printf("Left side is %s\n", seq[0])
+	e.expression = prmptforInput()
+	// fmt.Printf("equation : %s", e.value)
+	// seq := strings.Split(pe.equation, `=`)
+	proceqtwo(&e, &o)
+	fmt.Printf("equation : %s", e.expression)
+
+	// fmt.Printf("Left side is %s\n", seq[0])
+	fmt.Printf("left side: %s", e.leftSide)
+	fmt.Printf("right side: %s", e.rightSide)
+	fmt.Printf("delimeter: %s", e.delimeter)
 
 }

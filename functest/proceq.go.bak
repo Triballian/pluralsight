@@ -1,0 +1,94 @@
+package main
+
+import (
+	"fmt"
+)
+
+type header struct {
+	operator string // left or right
+	vars     int    // 1, 2, or 0
+}
+
+var h header
+var th = &h
+
+func proceq(e *eq) {
+	nvar := 0
+	n := 0
+	tHead := 0
+	a := 0
+	for i, c := range e.equation {
+
+		cc := fmt.Sprintf("%c", c)
+
+		if cc == "\n" {
+			continue
+		}
+		if cc == "*" {
+			a++
+			if e.terms == nil {
+
+				createTerm(e)
+				// input constat
+				// input coefficient
+				// input number of terms
+				n++
+
+			}
+			if a == 2 {
+				createTerm(e)
+				// input constat
+				// input coefficient
+				// input number of terms
+				n++
+			}
+			continue
+
+		}
+		if cc == "=" {
+			if e.terms == nil {
+
+				createTerm(e)
+				// input constat
+				// input coefficient
+				// input number of terms
+				n++
+
+			}
+		}
+
+		if (cc == "+") || (cc == "-") {
+			if e.terms == nil {
+				createTerm(e)
+				// input constat
+				// input coefficient
+				// input number of terms
+				n++
+			}
+		}
+		if (cc == "x") || (cc == "y") {
+			if e.terms == nil {
+				createTerm(e)
+				// input constat
+				// input coefficient
+				// input number of terms
+				n++
+			}
+			if a == 1 {
+				nvar++
+			}
+
+		}
+		if e.terms[n].coeficient == nil {
+			e.terms[n].coeficient = append(e.terms[n].coeficient, e.equation[:i-1])
+		}
+
+	}
+}
+
+func createTerm(e *eq) {
+	var term term
+	pt := &term
+	e.terms = append(e.terms, pt)
+
+}

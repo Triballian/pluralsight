@@ -1,0 +1,35 @@
+package main
+
+import (
+	"fmt"
+	"strings"
+	"unicode"
+)
+
+type header struct {
+	operator string // left or right
+	vars     int    // 1, 2, or 0
+}
+
+func proceqone(e *eq) {
+	var eq []string
+	f := make([]string, 0, 20)
+	var fstring string
+	// remove space and convert text into a slice
+	for _, value := range e.equation {
+		if unicode.IsSpace(value) {
+			continue
+		}
+		fstring = fmt.Sprintf("%c", value)
+		f = append(f, fstring)
+	}
+	fstring = strings.Join(f, "")
+	for i, c := range fstring {
+		cc := fmt.Sprintf("%c", c)
+		if cc == "=" {
+			eq = append(eq, e.equation[:i-1], e.equation[i:])
+
+		}
+
+	}
+}
