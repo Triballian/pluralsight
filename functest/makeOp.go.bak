@@ -1,0 +1,5 @@
+package main
+
+func makeOp(e *eq, cc string) {
+
+}

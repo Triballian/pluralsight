@@ -2,19 +2,15 @@ package main
 
 import "fmt"
 
-type ex struct {
-	equation eq
-	operator []op
-}
 type eq struct {
-	expression string
-	delimeter  string
-	leftSide   string
-	rightSide  string
-	opLeft     string
-	opRight    string
-	terms      []*term
-	operators  []*op
+	header    *head
+	delimeter string
+	leftSide  string
+	rightSide string
+	opLeft    string
+	opRight   string
+	terms     []*term
+	operators []*op
 
 	// coefficient terms or constant terms
 
@@ -24,17 +20,15 @@ type expression interface {
 	split(delimeter string)
 }
 
-type lop struct {
+type head struct {
+	expression string
 }
-type rop struct {
-}
-
 type op struct {
+	header    *head
 	delimeter string
-	lterm     string
-	rterm     string
+	lside     string
+	rside     string
 	operator  string
-	lside     bool
 }
 type term struct {
 	lside      bool
@@ -46,18 +40,21 @@ type term struct {
 }
 
 func main() {
+	var h head
 	var e eq
 	var o op
-
-	e.expression = prmptforInput()
+	h.expression = prmptforInput()
+	e.header = &h
+	o.header = &h
 	// fmt.Printf("equation : %s", e.value)
 	// seq := strings.Split(pe.equation, `=`)
 	proceqtwo(&e, &o)
-	fmt.Printf("equation : %s", e.expression)
+	fmt.Printf("equation : %s", h.expression)
 
 	// fmt.Printf("Left side is %s\n", seq[0])
 	fmt.Printf("left side: %s", e.leftSide)
 	fmt.Printf("right side: %s", e.rightSide)
 	fmt.Printf("delimeter: %s", e.delimeter)
+	fmt.Printf("op leftside: %s", o.lside)
 
 }
