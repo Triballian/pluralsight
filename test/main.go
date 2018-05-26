@@ -1,13 +1,15 @@
 package main
 
-import (
-	"fmt"
-	"strings"
-)
+import "fmt"
+
+var test = []struct {
+	baby string
+	dog  string
+}{
+	{"baby", "blue"},
+	{"dog", "ray"},
+}
 
 func main() {
-	var s string
-	s = "2*x**2+3y**2"
-	seq := strings.Split(s, `=`)
-	fmt.Println("seq[0] has the value of %s", seq[1])
+	fmt.Printf("this is the output %v", test)
 }

@@ -2,6 +2,8 @@ package main
 
 import "fmt"
 
+// if the head is on the left side and there is an o.operator. Then run terSlide on o.lside
+// delimeters are = , + || -, var, * || **
 type eq struct {
 	expression string
 	// header    *head
@@ -18,6 +20,17 @@ type eq struct {
 
 }
 
+type head struct {
+	LsideEquation bool
+	lsideOperator bool
+	lsideOVar     bool
+}
+
+type variable struct {
+	lside string
+	rside string
+}
+
 type op struct {
 	delimeter string
 	lSide     string
@@ -29,9 +42,11 @@ type term struct {
 	lside      bool
 	operator   string   // left side, right side of operator or there is no operator adjecent to this term.
 	coeficient []string // every term has a coeffecient even if the coefficient is 1
-	variable   rune     // x, y, or nil
+	variable   string   // x, y, or nil
 	constant   int
-	exponent   int // even if the exponent is zero
+	baseEx     string
+	varEx      string
+	base       string
 }
 
 func main() {

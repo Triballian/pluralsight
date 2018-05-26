@@ -1,11 +1,23 @@
 package main
 
+import "fmt"
+
 func proceqtwo(e *eq, o *op) {
 
 	e.delSpace()
 	e.split()
 	o.lsplit(e)
 	o.rsplit(e)
+	fmt.Printf("o.lside is %v", o.lSide)
+	var h head
+	if len(e.lSide) > 0 {
+		h.LsideEquation = true
+
+		if len(o.lSide) > 0 {
+			h.lsideOperator = true
+			o.termSplit(&h, e)
+		}
+	}
 	// splitEq(o)
 	// splitOp(o)
 	// o.split("+")
