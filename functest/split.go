@@ -2,16 +2,11 @@ package main
 
 import "fmt"
 
-//unc (e *eq) split() {
 func split(d delimeter) {
 	for i, c := range d.getexp() {
 		cc := fmt.Sprintf("%c", c)
 		if d.isdelimeter(cc) {
 			d.setside(cc, i)
-			// d.delimeter = cc
-			// d.lSide = e.expression[:i]
-			// d.rSide = e.expression[i+1:]
-
 		}
 	}
 }
@@ -36,15 +31,14 @@ func (o *op) setside(cc string, i int) {
 	o.rSide = o.expression[i+1:]
 }
 
-// do this with expression as well
-func (o *eq) isdelimeter(cc string) (b bool) {
+func (e *eq) isdelimeter(cc string) (b bool) {
 	if cc == "=" {
 		b = true
 		return
 	}
 	return
 }
-func (e *op) isdelimeter(cc string) (b bool) {
+func (o *op) isdelimeter(cc string) (b bool) {
 	if (cc == "+") || (cc == "-") {
 		b = true
 		return
