@@ -5,7 +5,7 @@ import "fmt"
 func proceqtwo(e *eq, o *op) {
 
 	e.delSpace()
-	e.split()
+	split(e)
 	o.lsplit(e)
 	o.rsplit(e)
 	fmt.Printf("o.lside is %v", o.lSide)

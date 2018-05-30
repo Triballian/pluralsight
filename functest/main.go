@@ -4,12 +4,13 @@ import "fmt"
 
 // if the head is on the left side and there is an o.operator. Then run terSlide on o.lside
 // delimeters are = , + || -, var, * || **
+type delimeter interface {
+	isdelimeter(cc string) bool
+	getexp() string
+	setside(string, int)
+}
 type eq struct {
-	expression string
-	// header    *head
-	delimeter string
-	lSide     string
-	rSide     string
+	side
 	opLeft    string
 	opRight   string
 	lterms    []*term
@@ -31,10 +32,14 @@ type variable struct {
 	rside string
 }
 
+type side struct {
+	expression string
+	delimeter  string
+	lSide      string
+	rSide      string
+}
 type op struct {
-	delimeter string
-	lSide     string
-	rSide     string
+	side
 	operator  string
 	loperator bool
 }

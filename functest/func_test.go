@@ -16,16 +16,28 @@ func TestDelspace(t *testing.T) {
 		if got != want {
 			t.Errorf("got '%s' want '%s'", got, want)
 		}
-	}
-
+	})
 
 }
 
-func split(t *testing.T){
-	t.Run("spliting the expression by equal sighn and operator", func(t *testing.T)){
+func TestSplit(t *testing.T) {
+	t.Run("spliting the expression by equal sign and operator", func(t *testing.T) {
 		var e eq
 		var o op
-		e.expression = "2*x**2 + 3*y**2 = 15"
+		e.expression = "2*x**2+3*y**2=15"
+		o.expression = "2*x**2+3*y**2=15"
+		split(&e)
+		gotl := e.lSide
+		gotr := e.rSide
 
-	}
+		wantl := "2*x**2+3*y**2"
+		wantr := "15"
+		if gotl != wantl {
+			t.Errorf("gotl '%s' wantl '%s'", gotl, wantl)
+		}
+		if gotr != wantr {
+			t.Errorf("gotr '%s' wantr '%s'", gotr, wantr)
+		}
+
+	})
 }
