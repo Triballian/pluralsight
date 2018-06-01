@@ -35,6 +35,7 @@ type variable struct {
 type side struct {
 	expression string
 	delimeter  string
+	delimeters []string
 	lSide      string
 	rSide      string
 }
@@ -66,7 +67,7 @@ func main() {
 	fmt.Printf("equation : %s", e.expression)
 
 	// fmt.Printf("Left side is %s\n", seq[0])
-	fmt.Printf("left side: %s", e.lSide)
+	fmt.Printf("left side: %s", o.lSide)
 	fmt.Printf("right side: %s", e.rSide)
 	fmt.Printf("delimeter: %s", e.delimeter)
 	fmt.Printf("op leftside: %s", o.lSide)
